@@ -26,6 +26,8 @@ public class MainActivity extends Activity {
  private class Bridge {
   @JavascriptInterface public String getBaseUrl(){return prefs.getString("backend_url","");}
   @JavascriptInterface public void setBaseUrl(String url){prefs.edit().putString("backend_url",url==null?"":url.trim().replaceAll("/+$","")).apply();}
+  @JavascriptInterface public String getAccessToken(){return prefs.getString("app_token","");}
+  @JavascriptInterface public void setAccessToken(String token){prefs.edit().putString("app_token",token==null?"":token).apply();}
   @JavascriptInterface public void openBackendSettings(){runOnUiThread(()->showBackendDialog());}
  }
  private void showBackendDialog(){
