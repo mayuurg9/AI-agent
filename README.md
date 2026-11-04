@@ -28,6 +28,6 @@ Never commit `.env` or place API keys in frontend code. This is a local-developm
 
 A native Android client is included in the `android/` folder. In CodeAssist, clone the repository, then open/import the **android folder itself** as the Gradle project. Do not try to run the repository root as an Android app.
 
-The Android client packages the NEXUS interface and connects to the Node.js backend over HTTPS. It does not run Node.js or hold provider API keys. Deploy the root Node app to a Node-compatible host, configure your provider key as a server secret, and set `APP_ORIGIN=https://appassets.androidplatform.net` (add any other required web origins as a comma-separated list). In the Android app, open Settings and enter the backend's HTTPS URL.
+The Android client packages the NEXUS interface and connects to the Node.js backend over HTTPS. It does not run Node.js or hold provider API keys. Deploy the root Node app to a Node-compatible host, configure your provider key and a strong random APP_ACCESS_TOKEN as server secrets, and set `APP_ORIGIN=https://appassets.androidplatform.net` (add any other required web origins as a comma-separated list). In the Android app, open Settings and enter the backend HTTPS URL and matching app access token.
 
 Build requirements: JDK 17, Android SDK 35, and Gradle dependency access. The Android project has not yet been built or tested inside CodeAssist, so the first Gradle sync may request SDK or plugin downloads.
