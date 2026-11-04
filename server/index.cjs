@@ -1,0 +1,10 @@
+require("dotenv").config();
+const express=require("express");
+const path=require("node:path");
+const {ask,store}=require("./agent.cjs");
+const app=express();app.disable("x-powered-by");app.use(express.json({limit:"256kb"}));
+app.use(express.static(path.join(__dirname,"../public")));
+app.get("/api/health",(_q,s)=>s.json({ok:true,providers:{gemini:!!process.env.GEMINI_API_KEY,groq:!!process.env.GROQ_API_KEY,openrouter:!!process.env.OPENROUTER_API_KEY}}));
+app.get("/api/workspace",async(_q,s)=>{const d=await store();s.json(d);});
+app.post("/api/chat",async(q,s)=>{try{const {message,history=[],provider="gemini",model}=q.body||{};if(typeof message!=="string"||!message.trim()||message.length>10000)return s.status(400).json({error:"Enter a message under 10,000 characters."});if(!Array.isArray(history)||history.length>20)return s.status(400).json({error:"Conversation history is too large."});const safe=history.filter(m=>m&&["user","assistant"].includes(m.role)&&typeof m.content==="string").slice(-16);s.json(await ask({message:message.trim(),history:safe,provider,model}));}catch(e){s.status(502).json({error:String(e.message||"Agent error").slice(0,400)});}});
+const port=Number(process.env.PORT||3000);app.listen(port,()=>console.log("NEXUS AI listening on http://localhost:"+port));
