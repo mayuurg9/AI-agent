@@ -2,7 +2,7 @@ NEXUS AI for CodeAssist
 
 Open this android/ folder in CodeAssist as a Gradle/Android project, not the repository root.
 
-Requirements: Android SDK 35, JDK 17, and internet access for Gradle dependencies.
+Requirements: a recent CodeAssist 3.x release, Android SDK 35, and internet access to resolve AndroidX dependencies. CodeAssist builds with its on-device toolchain.
 
 The Android app contains the NEXUS interface, but it does not run the Node.js server or store provider API keys. Deploy the repository's Node backend separately on a Node-compatible host. Configure GEMINI_API_KEY, GROQ_API_KEY, or OPENROUTER_API_KEY in that host's secret settings, and set APP_ORIGIN=https://appassets.androidplatform.net.
 
