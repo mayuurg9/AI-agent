@@ -1,6 +1,6 @@
 NEXUS AI for CodeAssist
 
-Open this android/ folder in CodeAssist as a Gradle/Android project, not the repository root.
+Recommended: open the cloned AI-agent repository root in CodeAssist. The root Gradle settings automatically map the Android app module to android/app. Alternatively, open this android/ folder directly as a standalone Gradle project.
 
 Requirements: a recent CodeAssist 3.x release, Android SDK 35, and internet access to resolve AndroidX dependencies. CodeAssist builds with its on-device toolchain.
 
